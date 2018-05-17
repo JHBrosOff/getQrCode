@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>getQrCode</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="images/qr-code.png" type="image/png" sizes="16X16" >
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="qrcode.min.js"></script>
+  </head>
+  <body>
+  	<header>
+  		<h1>getQrCode</h1>
+  		<hr>
+  	</header>
+	<div class="container">
+		<div class="coloumn coloumnL">
+			<div>
+			    <label for="url"><h2>Website URL</h2></label>
+			    <input type="text" class="text" id="url" placeholder="example.com">
+			 </div>
+			 <button type="button" class="btn" onclick="generateQr()">getQrCode</button>
+    	</div>
+    	<div class="vl"></div>
+    	<div class="coloumn coloumnR">
+    		<div class="img" id="qrcode"></div>
+	    	<a class="dButton" id="dButton" download >Download</a>
+	    </div>
+	</div>
+	<footer>
+		<p>Created by Harin</p>
+		<p>Visit my <a href="https://imharin.github.io">website</a> to know more about me and my projects</p>
+		<p>
+			<a href="https://twitter.com/_iamHarin"><img src="images/twitter-logo.png" alt="Twitter"></a>
+			<a href="https://github.com/imHarin"><img src="images/github-logo.png" alt="GitHub"></a>
+			<a href="https://www.linkedin.com/in/imharin/"><img src="images/linkedin-logo.png" alt="LinkedIn"></a>
+  		</p>
+  	</footer>
+	<script type="text/javascript">
+		function generateQr(){
+			var url = document.getElementById("url").value
+			var elem = document.getElementById("qrcode");
+			if(elem.hasChildNodes() == true){
+				var elem = document.querySelector('#qrcode img');
+				elem.remove();
+			}
+			new QRCode(document.getElementById("qrcode"),{
+				text: url,
+				height: 240,
+				width: 240,
+				colorDark : "#000000",
+			    colorLight : "#ffffff",
+			    correctLevel : QRCode.CorrectLevel.H
+			});
+			var qrCode = document.querySelector('canvas');
+			var dButton = document.getElementById("dButton");
+			var dataURL = qrCode.toDataURL();
+			dButton.setAttribute("href",dataURL);
+		}
+	</script>
+
+  </body>
+</html>
+
+	
+	
